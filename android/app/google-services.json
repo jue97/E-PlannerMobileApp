@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "407621705980",
+    "firebase_url": "https://eventplanner-5834b.firebaseio.com",
+    "project_id": "eventplanner-5834b",
+    "storage_bucket": "eventplanner-5834b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:407621705980:android:1b01d3cbace684bd2fb779",
+        "android_client_info": {
+          "package_name": "com.example.sampleproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "407621705980-ld4clica69rjfkte5gd110d1ji3fojp2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAYRvI45TR8Y0f6jYJSzynWTMmCqHPsz2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "407621705980-ld4clica69rjfkte5gd110d1ji3fojp2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
