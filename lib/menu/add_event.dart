@@ -33,7 +33,8 @@ class _AddEventState extends State<AddEvent> {
   TimeOfDay _time = TimeOfDay.now();
   TimeOfDay picked;
   String _timeText = '';
-
+  var _value="Seminar A";
+  List<DropdownMenuItem> VenueList = [];
   Future<Null> _selectDate(BuildContext context) async {
     final picked = await showDatePicker(
       context: context,
@@ -79,6 +80,7 @@ class _AddEventState extends State<AddEvent> {
   @override
   void initState() {
     super.initState();
+    fetchEvntName();
     _dateText = "${_date.day}/${_date.month}/${_date.year}";
   }
 
@@ -171,31 +173,31 @@ class _AddEventState extends State<AddEvent> {
                           ),
                           //venue
                            Text("Venue"),
-                         /* StreamBuilder<QuerySnapshot>(
-                              stream: FirebaseFirestore.instance
-                                  .collection('Venue')
-                                  .snapshots(),
-                              // ignore: missing_return
-                              builder: (context, snapshot) {
-                                if (!snapshot.hasData) {
-                                  Text('Loading..');
-                                } else {
-                                  // ignore: non_constant_identifier_names
-                                  List<DropdownMenuItem> VenueList = [];
-                                  for (int i = 0;
-                                      i < snapshot.data.docs.length;
-                                      i++) {
-                                    DocumentSnapshot snapshots =
-                                        snapshot.data.docs[i];
-                                    VenueList.add(DropdownMenuItem(
-                                      child: Text(
-                                        snapshots.data['vName'],
-                                        style: TextStyle(color: Colors.black),
-                                      ),
-                                      value: "${snapshots.data['vName']}",
-                                    ));
-                                  }
-                                  return Padding(
+                          // StreamBuilder<QuerySnapshot>(
+                          //     stream: FirebaseFirestore.instance
+                          //         .collection('Venue')
+                          //         .snapshots(),
+                          //     // ignore: missing_return
+                          //     builder: (context, snapshot) {
+                          //       if (!snapshot.hasData) {
+                          //         Text('Loading..');
+                          //       } else {
+                          //         // ignore: non_constant_identifier_names
+                          //         List<DropdownMenuItem> VenueList = [];
+                          //         var count=1;
+                          //         // for(var a in snapshot.data.docs) {
+                          //         //   print(a["vName"]);
+                          //         //
+                          //         //   VenueList.add(DropdownMenuItem(
+                          //         //     child: Text(
+                          //         //       a["vName"],
+                          //         //       style: TextStyle(color: Colors.black),
+                          //         //     ),
+                          //         //     value: count,
+                          //         //   ));
+                          //         //   count++;
+                          //         // }
+                                   Padding(
                                     padding: const EdgeInsets.all(16.0),
                                     child: Row(
                                       mainAxisAlignment:
@@ -207,18 +209,18 @@ class _AddEventState extends State<AddEvent> {
                                           items: VenueList,
                                           onChanged: (venue) {
                                             setState(() {
-                                              venue = venue.toString();
+                                              _value = venue.toString();
                                             });
                                           },
-                                          value: venue,
+                                          value: _value ,
                                           isExpanded: false,
                                           hint: new Text("Choose Location"),
                                         )
                                       ],
                                     ),
-                                  );
-                                }
-                              }),*/
+                                  ),
+                              //   }
+                              // }),
                           /*Padding(
                             padding: const EdgeInsets.all(2.0),
                             child: Container(
@@ -300,15 +302,15 @@ class _AddEventState extends State<AddEvent> {
                                   color: Colors.orangeAccent,
                                   child: Text("Submit"),
                                   onPressed: () {
-                                    setState(() async {
+                                    setState(()  {
                                       if (_formKey.currentState.validate()) {
                                         eventName = name.text;
                                         eventDesc = desc.text;
                                         eventVenue = venue.text;
                                         eventDate = date.text;
                                         eventTime = time.text;
-                                        await addEvent();
                                       }
+                                      addEvent();
                                     });
                                   },
                                 ),
@@ -353,6 +355,24 @@ class _AddEventState extends State<AddEvent> {
       'venue': eventVenue,
       'date': eventDate,
       'time': eventTime,
+    });
+  }
+
+  fetchEvntName() async {
+    var count=1;
+    FirebaseFirestore.instance.collection("Venue").get().then((querySnapshot) {
+      querySnapshot.docs.forEach((result) {
+        setState(() {
+          print(result.data()["vName"]);
+          VenueList.add(DropdownMenuItem(
+            child: Text(
+              result.data()["vName"],
+              style: TextStyle(color: Colors.black),
+            ),
+            value: result.data()["vName"],
+          ));
+        });
+      });
     });
   }
 }
