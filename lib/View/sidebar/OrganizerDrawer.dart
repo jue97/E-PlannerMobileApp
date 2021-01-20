@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sampleproject/Controller/auth_helper.dart';
-import 'package:sampleproject/menu/list_event.dart';
-import 'package:sampleproject/menu/manage_event.dart';
+import 'package:EPlanner/Controller/auth_helper.dart';
+import 'package:EPlanner/menu/list_event.dart';
+import 'package:EPlanner/menu/manage_event.dart';
 
 class OrganizerDrawer extends StatefulWidget {
   @override

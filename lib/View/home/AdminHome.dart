@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sampleproject/Shared/loading.dart';
-import 'package:sampleproject/View/sidebar/AdminDrawer.dart';
-import 'package:sampleproject/map/map2.dart';
-import 'package:sampleproject/menu/add_event.dart';
-import 'package:sampleproject/menu/list_event.dart';
-import 'package:sampleproject/menu/notification.dart';
+import 'package:EPlanner/Shared/loading.dart';
+import 'package:EPlanner/View/sidebar/AdminDrawer.dart';
+import 'package:EPlanner/map/map2.dart';
+import 'package:EPlanner/menu/add_event.dart';
+import 'package:EPlanner/menu/list_event.dart';
+import 'package:EPlanner/menu/notification.dart';
 
 class AdminHome extends StatefulWidget {
   final String uid;

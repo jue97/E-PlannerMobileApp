@@ -8,7 +8,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'dart:math' show cos, sqrt, asin;
 
-import 'package:sampleproject/map/Secrets.dart';
+import 'package:EPlanner/map/Secrets.dart';
 
 class MapView extends StatefulWidget {
   @override
@@ -333,7 +333,7 @@ class _MapViewState extends State<MapView> {
               initialCameraPosition: CameraPosition(target: LatLng(2.2214, 102.4531), zoom: 15.0),
               myLocationEnabled: true,
               myLocationButtonEnabled: false,
-              mapType: MapType.normal,
+              mapType: MapType.hybrid,
               zoomGesturesEnabled: true,
               zoomControlsEnabled: false,
               polylines: Set<Polyline>.of(polylines.values),

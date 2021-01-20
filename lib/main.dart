@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:sampleproject/Controller/Handler.dart';
-import 'package:sampleproject/Controller/UserDBHandler.dart';
-import 'package:sampleproject/Shared/loading.dart';
-import 'package:sampleproject/View/home/AdminHome.dart';
-import 'package:sampleproject/View/home/OrganizerHome.dart';
-import 'package:sampleproject/View/home/StudentHome.dart';
-import 'package:sampleproject/models/NewUser.dart';
-import 'package:sampleproject/screen/splashScreen.dart';
+import 'package:EPlanner/Controller/Handler.dart';
+import 'package:EPlanner/Controller/UserDBHandler.dart';
+import 'package:EPlanner/Shared/loading.dart';
+import 'package:EPlanner/View/home/AdminHome.dart';
+import 'package:EPlanner/View/home/OrganizerHome.dart';
+import 'package:EPlanner/View/home/StudentHome.dart';
+import 'package:EPlanner/models/NewUser.dart';
+import 'package:EPlanner/screen/splashScreen.dart';
 import 'package:overlay_support/overlay_support.dart';
 //import 'package:firebase_messaging/firebase_messaging.dart';
 

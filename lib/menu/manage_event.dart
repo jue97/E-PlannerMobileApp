@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:sampleproject/Shared/constant.dart';
-import 'package:sampleproject/menu/DisplayData.dart';
+import 'package:EPlanner/Shared/constant.dart';
+import 'package:EPlanner/menu/DisplayData.dart';
 
 
 class ManageEvent extends StatefulWidget {

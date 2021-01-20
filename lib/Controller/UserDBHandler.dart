@@ -1,7 +1,7 @@
 
 //import 'package:geoflutterfire/geoflutterfire.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:sampleproject/models/NewUser.dart';
+import 'package:EPlanner/models/NewUser.dart';
 //import 'package:sampleproject/models/UserLocation.dart';
 
 class DatabaseService {

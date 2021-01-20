@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:sampleproject/Shared/loading.dart';
-import 'package:sampleproject/View/sidebar/StudentDrawer.dart';
-import 'package:sampleproject/menu/listEventStud.dart';
+import 'package:EPlanner/Shared/loading.dart';
+import 'package:EPlanner/View/sidebar/StudentDrawer.dart';
+import 'package:EPlanner/menu/listEventStud.dart';
 
 
 class StudentHome extends StatefulWidget {

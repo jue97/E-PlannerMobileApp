@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sampleproject/Shared/constant.dart';
-import 'package:sampleproject/map/map2.dart';
-import 'package:sampleproject/menu/DisplayData.dart';
+import 'package:EPlanner/Shared/constant.dart';
+import 'package:EPlanner/map/map2.dart';
+import 'package:EPlanner/menu/DisplayData.dart';
 
 class AddEvent extends StatefulWidget {
   @override
@@ -33,7 +33,7 @@ class _AddEventState extends State<AddEvent> {
   TimeOfDay _time = TimeOfDay.now();
   TimeOfDay picked;
   String _timeText = '';
-  var _value="Seminar A";
+  var _value = "Seminar A";
   List<DropdownMenuItem> VenueList = [];
   Future<Null> _selectDate(BuildContext context) async {
     final picked = await showDatePicker(
@@ -172,7 +172,7 @@ class _AddEventState extends State<AddEvent> {
                             ),
                           ),
                           //venue
-                           Text("Venue"),
+                          Text("Venue"),
                           // StreamBuilder<QuerySnapshot>(
                           //     stream: FirebaseFirestore.instance
                           //         .collection('Venue')
@@ -197,31 +197,44 @@ class _AddEventState extends State<AddEvent> {
                           //         //   ));
                           //         //   count++;
                           //         // }
-                                   Padding(
-                                    padding: const EdgeInsets.all(16.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: <Widget>[
-                                        //Icon(FontAwesomeIcons.marker, size: 30.0, color: Colors.teal,),
-                                        SizedBox(width: 0.2),
-                                        DropdownButton(
-                                          items: VenueList,
-                                          onChanged: (venue) {
-                                            setState(() {
-                                              _value = venue.toString();
-                                            });
-                                          },
-                                          value: _value ,
-                                          isExpanded: false,
-                                          hint: new Text("Choose Location"),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                              //   }
-                              // }),
-                          /*Padding(
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                //Icon(FontAwesomeIcons.marker, size: 30.0, color: Colors.teal,),
+                                SizedBox(width: 0.2),
+                                DropdownButton(
+                                  items: VenueList,
+                                  onChanged: (venue) {
+                                    setState(() {
+                                      _value = venue.toString();
+                                    });
+                                  },
+                                  value: _value,
+                                  isExpanded: false,
+                                  hint: new Text("Choose Location"),
+                                )
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 2),
+                          RaisedButton(
+                            color: Colors.orange,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Map2()),
+                              );
+                            },
+                            child: Text(
+                              "View Map",
+                              style: TextStyle(fontSize: 10.0),
+                            ),
+                          ),
+                          //   }
+                          // }),
+                          /* Padding(
                             padding: const EdgeInsets.all(2.0),
                             child: Container(
                               margin: EdgeInsets.symmetric(vertical: 1),
@@ -302,11 +315,11 @@ class _AddEventState extends State<AddEvent> {
                                   color: Colors.orangeAccent,
                                   child: Text("Submit"),
                                   onPressed: () {
-                                    setState(()  {
+                                    setState(() {
                                       if (_formKey.currentState.validate()) {
                                         eventName = name.text;
                                         eventDesc = desc.text;
-                                        eventVenue = venue.text;
+                                        eventVenue = _value;
                                         eventDate = date.text;
                                         eventTime = time.text;
                                       }

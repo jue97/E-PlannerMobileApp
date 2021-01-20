@@ -126,7 +126,7 @@ class _Map2State extends State<Map2> {
                     addressLocation = firstAddress.addressLine;
                   });
                 },
-                mapType: MapType.normal,
+                mapType: MapType.hybrid,
                 circles: circles,
                 compassEnabled: true,
                 trafficEnabled: true,

@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sampleproject/Controller/UserDBHandler.dart';
-import 'package:sampleproject/View/home/AdminHome.dart';
+import 'package:EPlanner/Controller/UserDBHandler.dart';
+import 'package:EPlanner/View/home/AdminHome.dart';
 
-import 'package:sampleproject/models/NewUser.dart';
+import 'package:EPlanner/models/NewUser.dart';
 
 class AdminProfile extends StatefulWidget {
   final String uid;

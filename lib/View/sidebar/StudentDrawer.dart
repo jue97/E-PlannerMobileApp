@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:sampleproject/Controller/auth_helper.dart';
-import 'package:sampleproject/menu/listEventStud.dart';
-import 'package:sampleproject/menu/notification.dart';
+import 'package:EPlanner/Controller/auth_helper.dart';
+import 'package:EPlanner/menu/listEventStud.dart';
+import 'package:EPlanner/menu/notification.dart';
 
 class StudentDrawer extends StatefulWidget {
   @override

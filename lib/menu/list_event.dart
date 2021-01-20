@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:sampleproject/menu/edit_event.dart';
+import 'package:EPlanner/menu/edit_event.dart';
 
 class ListEvent extends StatefulWidget {
   @override
@@ -19,7 +19,7 @@ class _ListEventState extends State<ListEvent> {
 
     if (namaEvent == null) {
       return Scaffold(
-        appBar: AppBar( 
+        appBar: AppBar(
           backgroundColor: Colors.orange,
           actions: <Widget>[
             IconButton(
@@ -79,7 +79,7 @@ class _ListEventState extends State<ListEvent> {
                     color: Colors.orangeAccent[300]),
               ),
               Container(
-                height: size.height * 0.6,
+                height: size.height * 0.5,
                 child: StreamBuilder<QuerySnapshot>(
                   stream: fetchEvent(),
                   builder: (BuildContext context,
@@ -92,11 +92,16 @@ class _ListEventState extends State<ListEvent> {
                       return ListView.builder(
                           itemCount: snapshot.data.docs.length,
                           itemBuilder: (BuildContext context, int i) {
-                            String name = snapshot.data.docs[i]["name"].toString();
-                            String description = snapshot.data.docs[i]["desc"].toString();
-                            String venue = snapshot.data.docs[i]["venue"].toString();
-                            String date = snapshot.data.docs[i]["date"].toString();
-                            String time = snapshot.data.docs[i]["time"].toString();
+                            String name =
+                                snapshot.data.docs[i]["name"].toString();
+                            String description =
+                                snapshot.data.docs[i]["desc"].toString();
+                            String venue =
+                                snapshot.data.docs[i]["venue"].toString();
+                            String date =
+                                snapshot.data.docs[i]["date"].toString();
+                            String time =
+                                snapshot.data.docs[i]["time"].toString();
 
                             return Padding(
                               padding: const EdgeInsets.all(5.0),

@@ -78,10 +78,11 @@ class AuthHelper {
   }
 
 }*/
+import 'package:EPlanner/Controller/UserDBHandler.dart';
+import 'package:EPlanner/models/NewUser.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //import 'package:google_sign_in/google_sign_in.dart';
-import 'package:sampleproject/Controller/UserDBHandler.dart';
-import 'package:sampleproject/models/NewUser.dart';
+
 
 class AuthService {
   //_auth is private property

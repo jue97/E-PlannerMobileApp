@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sampleproject/View/register.dart';
-import 'package:sampleproject/View/sign_in.dart';
+import 'package:EPlanner/View/register.dart';
+import 'package:EPlanner/View/sign_in.dart';
 
 
 class Handler extends StatefulWidget {
