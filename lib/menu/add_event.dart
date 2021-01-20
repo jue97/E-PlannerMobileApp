@@ -171,7 +171,7 @@ class _AddEventState extends State<AddEvent> {
                           ),
                           //venue
                            Text("Venue"),
-                          StreamBuilder<QuerySnapshot>(
+                         /* StreamBuilder<QuerySnapshot>(
                               stream: FirebaseFirestore.instance
                                   .collection('Venue')
                                   .snapshots(),
@@ -218,7 +218,7 @@ class _AddEventState extends State<AddEvent> {
                                     ),
                                   );
                                 }
-                              }),
+                              }),*/
                           /*Padding(
                             padding: const EdgeInsets.all(2.0),
                             child: Container(
