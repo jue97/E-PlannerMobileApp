@@ -359,11 +359,9 @@ class _AddEventState extends State<AddEvent> {
   }
 
   fetchEvntName() async {
-    var count=1;
     FirebaseFirestore.instance.collection("Venue").get().then((querySnapshot) {
       querySnapshot.docs.forEach((result) {
         setState(() {
-          print(result.data()["vName"]);
           VenueList.add(DropdownMenuItem(
             child: Text(
               result.data()["vName"],
