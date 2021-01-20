@@ -76,7 +76,6 @@ class _AddEventState extends State<AddEvent> {
             ));
   }
 
-
   @override
   void initState() {
     super.initState();
@@ -171,8 +170,56 @@ class _AddEventState extends State<AddEvent> {
                             ),
                           ),
                           //venue
-                          Text("Venue"),
-                          Padding(
+                           Text("Venue"),
+                          StreamBuilder<QuerySnapshot>(
+                              stream: FirebaseFirestore.instance
+                                  .collection('Venue')
+                                  .snapshots(),
+                              // ignore: missing_return
+                              builder: (context, snapshot) {
+                                if (!snapshot.hasData) {
+                                  Text('Loading..');
+                                } else {
+                                  // ignore: non_constant_identifier_names
+                                  List<DropdownMenuItem> VenueList = [];
+                                  for (int i = 0;
+                                      i < snapshot.data.docs.length;
+                                      i++) {
+                                    DocumentSnapshot snapshots =
+                                        snapshot.data.docs[i];
+                                    VenueList.add(DropdownMenuItem(
+                                      child: Text(
+                                        snapshots.data['vName'],
+                                        style: TextStyle(color: Colors.black),
+                                      ),
+                                      value: "${snapshots.data['vName']}",
+                                    ));
+                                  }
+                                  return Padding(
+                                    padding: const EdgeInsets.all(16.0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        //Icon(FontAwesomeIcons.marker, size: 30.0, color: Colors.teal,),
+                                        SizedBox(width: 0.2),
+                                        DropdownButton(
+                                          items: VenueList,
+                                          onChanged: (venue) {
+                                            setState(() {
+                                              venue = venue.toString();
+                                            });
+                                          },
+                                          value: venue,
+                                          isExpanded: false,
+                                          hint: new Text("Choose Location"),
+                                        )
+                                      ],
+                                    ),
+                                  );
+                                }
+                              }),
+                          /*Padding(
                             padding: const EdgeInsets.all(2.0),
                             child: Container(
                               margin: EdgeInsets.symmetric(vertical: 1),
@@ -208,7 +255,7 @@ class _AddEventState extends State<AddEvent> {
                                 ],
                               ),
                             ),
-                          ),
+                          ),*/
 
                           //date
                           Text("Date"),
@@ -253,16 +300,16 @@ class _AddEventState extends State<AddEvent> {
                                   color: Colors.orangeAccent,
                                   child: Text("Submit"),
                                   onPressed: () {
-                                    setState(() {
+                                    setState(() async {
                                       if (_formKey.currentState.validate()) {
                                         eventName = name.text;
                                         eventDesc = desc.text;
                                         eventVenue = venue.text;
                                         eventDate = date.text;
                                         eventTime = time.text;
+                                        await addEvent();
                                       }
                                     });
-                                    addEvent();
                                   },
                                 ),
                               ),
@@ -298,6 +345,7 @@ class _AddEventState extends State<AddEvent> {
                   ])))
         ])));
   }
+
   addEvent() async {
     FirebaseFirestore.instance.collection("event").add({
       'name': eventName,
