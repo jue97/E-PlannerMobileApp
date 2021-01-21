@@ -74,14 +74,19 @@ class _ListEventSState extends State<ListEventS> {
                       return ListView.builder(
                           itemCount: snapshot.data.docs.length,
                           itemBuilder: (BuildContext context, int i) {
+                            // ignore: unused_local_variable
                             String name =
                                 snapshot.data.docs[i]["name"].toString();
+                            // ignore: unused_local_variable
                             String description =
                                 snapshot.data.docs[i]["desc"].toString();
+                            // ignore: unused_local_variable
                             String venue =
                                 snapshot.data.docs[i]["venue"].toString();
+                            // ignore: unused_local_variable
                             String date =
                                 snapshot.data.docs[i]["date"].toString();
+                            // ignore: unused_local_variable
                             String time =
                                 snapshot.data.docs[i]["time"].toString();
 
@@ -231,14 +236,19 @@ class _ListEventSState extends State<ListEventS> {
                       return ListView.builder(
                           itemCount: snapshot.data.docs.length,
                           itemBuilder: (BuildContext context, int i) {
+                            // ignore: unused_local_variable
                             String name =
                                 snapshot.data.docs[i]["name"].toString();
+                            // ignore: unused_local_variable
                             String description =
                                 snapshot.data.docs[i]["desc"].toString();
+                            // ignore: unused_local_variable
                             String venue =
                                 snapshot.data.docs[i]["venue"].toString();
+                            // ignore: unused_local_variable
                             String date =
                                 snapshot.data.docs[i]["date"].toString();
+                            // ignore: unused_local_variable
                             String time =
                                 snapshot.data.docs[i]["time"].toString();
 

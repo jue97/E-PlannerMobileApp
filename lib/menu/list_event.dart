@@ -12,6 +12,8 @@ class ListEvent extends StatefulWidget {
 class _ListEventState extends State<ListEvent> {
   String namaEvent;
   TextEditingController searchController = new TextEditingController();
+  var _value = "Seminar A";
+  List<DropdownMenuItem> VenueList = [];
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +98,7 @@ class _ListEventState extends State<ListEvent> {
                                 snapshot.data.docs[i]["name"].toString();
                             String description =
                                 snapshot.data.docs[i]["desc"].toString();
-                            String venue =
+                            String _value =
                                 snapshot.data.docs[i]["venue"].toString();
                             String date =
                                 snapshot.data.docs[i]["date"].toString();
@@ -201,7 +203,7 @@ class _ListEventState extends State<ListEvent> {
                                                               eName: name,
                                                               eDesc:
                                                                   description,
-                                                              eVenue: venue,
+                                                              eVenue: _value,
                                                               eDate: date,
                                                               eTime: time,
                                                               index: snapshot
@@ -306,7 +308,7 @@ class _ListEventState extends State<ListEvent> {
                               snapshot.data.docs[i]["name"].toString();
                           String description =
                               snapshot.data.docs[i]["desc"].toString();
-                          String venue =
+                          String _value =
                               snapshot.data.docs[i]["venue"].toString();
                           String date =
                               snapshot.data.docs[i]["date"].toString();
@@ -409,7 +411,7 @@ class _ListEventState extends State<ListEvent> {
                                                         new EditEvent(
                                                             eName: name,
                                                             eDesc: description,
-                                                            eVenue: venue,
+                                                            eVenue: _value,
                                                             eDate: date,
                                                             eTime: time,
                                                             index: snapshot
@@ -452,5 +454,21 @@ class _ListEventState extends State<ListEvent> {
         .collection("event")
         .where("name", isEqualTo: namaEvent)
         .snapshots();
+  }
+
+  fetchEvntName() async {
+    FirebaseFirestore.instance.collection("Venue").get().then((querySnapshot) {
+      querySnapshot.docs.forEach((result) {
+        setState(() {
+          VenueList.add(DropdownMenuItem(
+            child: Text(
+              result.data()["vName"],
+              style: TextStyle(color: Colors.black),
+            ),
+            value: result.data()["vName"],
+          ));
+        });
+      });
+    });
   }
 }

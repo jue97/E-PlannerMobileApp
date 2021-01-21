@@ -1,4 +1,4 @@
-package com.example.sampleproject
+package com.example.EPlanner
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,4 +1,4 @@
-package com.example.sampleproject;
+package com.example.EPlanner;
 
 import io.flutter.plugins.firebasemessaging.FirebaseMessagingPlugin;
 import io.flutter.app.FlutterApplication;

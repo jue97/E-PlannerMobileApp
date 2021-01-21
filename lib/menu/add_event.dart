@@ -34,6 +34,7 @@ class _AddEventState extends State<AddEvent> {
   TimeOfDay picked;
   String _timeText = '';
   var _value = "Seminar A";
+  // ignore: non_constant_identifier_names
   List<DropdownMenuItem> VenueList = [];
   Future<Null> _selectDate(BuildContext context) async {
     final picked = await showDatePicker(
@@ -315,15 +316,16 @@ class _AddEventState extends State<AddEvent> {
                                   color: Colors.orangeAccent,
                                   child: Text("Submit"),
                                   onPressed: () {
-                                    setState(() {
+                                    setState(() async {
                                       if (_formKey.currentState.validate()) {
                                         eventName = name.text;
                                         eventDesc = desc.text;
                                         eventVenue = _value;
                                         eventDate = date.text;
                                         eventTime = time.text;
+                                        await addEvent();
                                       }
-                                      addEvent();
+                                     
                                     });
                                   },
                                 ),

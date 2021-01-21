@@ -1,15 +1,21 @@
+import 'package:EPlanner/map/map2.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:EPlanner/Shared/constant.dart';
 import 'package:EPlanner/menu/list_event.dart';
-
 
 class EditEvent extends StatefulWidget {
   /*final DocumentSnapshot data;*/
   final String eName, eDesc, eVenue, eDate, eTime;
   final index;
 
-  EditEvent({this.eName, this.eDesc, this.eVenue, this.eDate, this.eTime, this.index});
+  EditEvent(
+      {this.eName,
+      this.eDesc,
+      this.eVenue,
+      this.eDate,
+      this.eTime,
+      this.index});
 
   @override
   _EditEventState createState() => _EditEventState();
@@ -23,7 +29,11 @@ class _EditEventState extends State<EditEvent> {
   TextEditingController time = new TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
-  String eventName = '', eventDesc = '', eventVenue = '', eventDate = '', eventTime = '';
+  String eventName = '',
+      eventDesc = '',
+      eventVenue = '',
+      eventDate = '',
+      eventTime = '';
   String error = '';
   bool loading = false;
   DateTime _date = DateTime.now();
@@ -32,6 +42,9 @@ class _EditEventState extends State<EditEvent> {
   TimeOfDay _time = TimeOfDay.now();
   TimeOfDay picked;
   String _timeText = '';
+  var _value = "Seminar A";
+  // ignore: non_constant_identifier_names
+  List<DropdownMenuItem> VenueList = [];
 
   Future<Null> _selectDate(BuildContext context) async {
     final picked = await showDatePicker(
@@ -66,7 +79,7 @@ class _EditEventState extends State<EditEvent> {
   void initState() {
     super.initState();
     getEventData();
-
+    fetchEvntName();
   }
 
   @override
@@ -74,6 +87,7 @@ class _EditEventState extends State<EditEvent> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.orange[300],
         actions: <Widget>[
           IconButton(
               icon: Icon(
@@ -98,7 +112,7 @@ class _EditEventState extends State<EditEvent> {
                   style: TextStyle(
                       fontSize: 30.0,
                       fontWeight: FontWeight.bold,
-                      color: Theme.of(context).primaryColor),
+                      color: Colors.orangeAccent),
                 ),
                 SizedBox(
                   height: size.height * 0.03,
@@ -107,7 +121,7 @@ class _EditEventState extends State<EditEvent> {
                   width: size.width * 0.9,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: Colors.brown[200],
+                      color: Colors.white10,
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.3),
@@ -130,7 +144,7 @@ class _EditEventState extends State<EditEvent> {
                             EdgeInsets.symmetric(vertical: 9, horizontal: 20),
                         child: TextFormField(
                           controller: name,
-                          onChanged: (String str){
+                          onChanged: (String str) {
                             setState(() {
                               eventName = str;
                             });
@@ -152,7 +166,7 @@ class _EditEventState extends State<EditEvent> {
                             EdgeInsets.symmetric(vertical: 9, horizontal: 20),
                         child: TextFormField(
                           controller: desc,
-                          onChanged: (String str){
+                          onChanged: (String str) {
                             setState(() {
                               eventDesc = str;
                             });
@@ -168,13 +182,48 @@ class _EditEventState extends State<EditEvent> {
                       ),
                       //venue
                       Text("Venue"),
-                      Container(
+                      Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                //Icon(FontAwesomeIcons.marker, size: 30.0, color: Colors.teal,),
+                                SizedBox(width: 0.2),
+                                DropdownButton(
+                                  items: VenueList,
+                                  onChanged: (venue) {
+                                    setState(() {
+                                      _value = venue.toString();
+                                    });
+                                  },
+                                  value: _value,
+                                  isExpanded: false,
+                                  hint: new Text("Choose Location"),
+                                )
+                              ],
+                            ),
+                          ),
+                          SizedBox(height: 2),
+                          RaisedButton(
+                            color: Colors.orange,
+                            onPressed: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => Map2()),
+                              );
+                            },
+                            child: Text(
+                              "View Map",
+                              style: TextStyle(fontSize: 10.0),
+                            ),
+                          ),
+                      /*Container(
                         margin: EdgeInsets.symmetric(vertical: 2),
                         padding:
                             EdgeInsets.symmetric(vertical: 9, horizontal: 20),
                         child: TextFormField(
                           controller: venue,
-                          onChanged: (String str){
+                          onChanged: (String str) {
                             setState(() {
                               eventVenue = str;
                             });
@@ -187,7 +236,7 @@ class _EditEventState extends State<EditEvent> {
                             return null;
                           },
                         ),
-                      ),
+                      ),*/
                       //date
                       Text("Date"),
                       Container(
@@ -228,7 +277,7 @@ class _EditEventState extends State<EditEvent> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: RaisedButton(
-                              color: Colors.pinkAccent,
+                              color: Colors.orangeAccent,
                               child: Text("Edit"),
                               onPressed: () async {
                                 await _updateEvent();
@@ -285,13 +334,13 @@ class _EditEventState extends State<EditEvent> {
     print(eventTime);*/
   }
 
-   editEvent(uid) async {
+  editEvent(uid) async {
     CollectionReference collectionReference =
         FirebaseFirestore.instance.collection("event");
     return await collectionReference.doc(uid).set({
       "name": name.text,
       "description": desc.text,
-      "venue": venue.text,
+      "venue": _value,
       "date": date.text,
       "time": time.text,
     });
@@ -302,14 +351,31 @@ class _EditEventState extends State<EditEvent> {
     FirebaseFirestore.instance.runTransaction((Transaction transaction) async {
       DocumentSnapshot snapshot = await transaction.get(widget.index);
       await transaction.update(snapshot.reference, {
-        "date" : eventDate,
+        "date": eventDate,
         "desc": eventDesc,
-        "name" : eventName,
-        "time" : eventTime,
-        "venue" : eventVenue,
+        "name": eventName,
+        "time": eventTime,
+        "venue": eventVenue,
       });
     });
   }
+
+  fetchEvntName() async {
+    FirebaseFirestore.instance.collection("Venue").get().then((querySnapshot) {
+      querySnapshot.docs.forEach((result) {
+        setState(() {
+          VenueList.add(DropdownMenuItem(
+            child: Text(
+              result.data()["vName"],
+              style: TextStyle(color: Colors.black),
+            ),
+            value: result.data()["vName"],
+          ));
+        });
+      });
+    });
+  }
+
 }
 
 /*
@@ -327,4 +393,3 @@ class _EditEventState extends State<EditEvent> {
       });
     });
   }*/
-
