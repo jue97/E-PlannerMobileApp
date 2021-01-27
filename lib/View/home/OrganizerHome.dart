@@ -15,8 +15,10 @@ class OrganizerHome extends StatefulWidget {
 class _OrganizerHomeState extends State<OrganizerHome> {
   User user;
   bool loading = false;
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return loading
         ? Loading()
         : Scaffold(
@@ -33,7 +35,11 @@ class _OrganizerHomeState extends State<OrganizerHome> {
                           builder: (BuildContext context) => Notify()));
                     })
               ],
-              title: Text("Organizer Home"),
+              title: Text(
+                "ORGANIZER",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 30, color: Colors.black),
+              ),
               backgroundColor: Colors.orange,
               iconTheme: IconThemeData(
                 color: Colors.black,
@@ -41,8 +47,122 @@ class _OrganizerHomeState extends State<OrganizerHome> {
               elevation: 0.0,
             ),
             drawer: OrganizerDrawer(),
-           body: Center(
-              child: Column(
+            body: Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Center(
+                    child: Container(
+                        width: size.width,
+                        child: Column(children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "WELCOME TO E-PLANNER",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 30.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.orangeAccent),
+                            ),
+                          ),
+                          Container(
+                            child: Column(
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.all(20.0),
+                                      child: new MaterialButton(
+                                        height: 100,
+                                        minWidth: 300,
+                                        color: Colors.orangeAccent[100],
+                                        textColor: Colors.black,
+                                        child: new Text(
+                                          "Manage Event",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontSize: 30,
+                                              color: Colors.black),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    AddEvent()),
+                                          );
+                                        },
+                                        splashColor: Colors.orangeAccent,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.all(20.0),
+                                      child: new MaterialButton(
+                                        height: 100,
+                                        minWidth: 300,
+                                        color: Colors.orangeAccent[100],
+                                        textColor: Colors.black,
+                                        child: new Text(
+                                          "List Event",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontSize: 30,
+                                              color: Colors.black),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ListEvent()),
+                                          );
+                                        },
+                                        splashColor: Colors.orangeAccent,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.all(20.0),
+                                      child: new MaterialButton(
+                                        height: 100,
+                                        minWidth: 300,
+                                        color: Colors.orangeAccent[100],
+                                        textColor: Colors.black,
+                                        child: new Text(
+                                          "Location",
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontSize: 30,
+                                              color: Colors.black),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    MapView()),
+                                          );
+                                        },
+                                        splashColor: Colors.orangeAccent,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ])))));
+
+    /* child: Column(
                 children: <Widget>[
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -114,8 +234,6 @@ class _OrganizerHomeState extends State<OrganizerHome> {
                     ],
                   )
                 ],
-              ),
-            )
-          );
+              ),*/
   }
 }

@@ -1,12 +1,12 @@
 import 'dart:collection';
-
+//import 'dart:math' show sin, cos, sqrt, atan2;
+//import 'package:vector_math/vector_math.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoder/geocoder.dart' as geoCo;
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
 
 class Map2 extends StatefulWidget {
   final String uid;
@@ -26,6 +26,32 @@ class _Map2State extends State<Map2> {
   String addressLocation;
   String country;
   String postalCode;
+  //Position _currentPosition;
+  double earthRadius = 6371000;
+
+  //Using pLat and pLng as dummy location
+  //double pLat = 22.8965265;
+  //double pLng = 76.2545445;
+
+  //Use Geolocator to find the current location(latitude & longitude)
+  //getUserLocation() async {
+   // _currentPosition = await Geolocator.getCurrentPosition(
+    //    desiredAccuracy: LocationAccuracy.high);
+ // }
+
+  /*//Calculating the distance between two points without Geolocator plugin
+  getDistance() {
+    var dLat = radians(pLat - _currentPosition.latitude);
+    var dLng = radians(pLng - _currentPosition.longitude);
+    var a = sin(dLat / 2) * sin(dLat / 2) +
+        cos(radians(_currentPosition.latitude)) *
+            cos(radians(pLat)) *
+            sin(dLng / 2) *
+            sin(dLng / 2);
+    var c = 2 * atan2(sqrt(a), sqrt(1 - a));
+    var d = earthRadius * c;
+    print(d); //d is the distance in meters
+  }*/
 
   Set<Circle> circles = HashSet<Circle>();
 
@@ -60,15 +86,14 @@ class _Map2State extends State<Map2> {
   LatLng initialPosition = LatLng(2.2214, 102.4531);
   double value;
 
-
   Widget userSearchBar = TextFormField(
     textInputAction: TextInputAction.go,
-    style: TextStyle(fontFamily: "Poppins", color: Colors.white),
+    //style: TextStyle(fontFamily: "Poppins", color: Colors.white),
     decoration: InputDecoration(
       border: InputBorder.none,
       hintText: "Location",
-      hintStyle:
-          TextStyle(color: Colors.white, fontFamily: "Poppins", fontSize: 18.0),
+      //hintStyle:
+      //TextStyle(color: Colors.white, fontFamily: "Poppins", fontSize: 18.0),
     ),
   );
 
@@ -79,17 +104,16 @@ class _Map2State extends State<Map2> {
     //_getCurrenLocation();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: Colors.white,
+      //backgroundColor: Colors.white,
       appBar: AppBar(
           backgroundColor: Color(0x44000000),
           iconTheme: IconThemeData(
-            color: Colors.black,
-          ),
+              //color: Colors.black,
+              ),
           title: userSearchBar,
           actions: <Widget>[
             IconButton(
@@ -156,9 +180,9 @@ class _Map2State extends State<Map2> {
         circleId: CircleId("circle"),
         center: LatLng(currentLocation.latitude, currentLocation.longitude),
         radius: 1000,
-        fillColor: Colors.blueAccent.withOpacity(0.1),
+        //fillColor: Colors.blueAccent.withOpacity(0.1),
         strokeWidth: 1,
-        strokeColor: Colors.blueAccent,
+        //strokeColor: Colors.black,
       ));
     });
   }

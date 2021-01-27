@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:EPlanner/Shared/constant.dart';
 import 'package:EPlanner/map/map2.dart';
 import 'package:EPlanner/menu/DisplayData.dart';
+import 'package:EPlanner/menu/list_event.dart';
 
 class AddEvent extends StatefulWidget {
   @override
@@ -90,7 +91,7 @@ class _AddEventState extends State<AddEvent> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.orange[300],
+          backgroundColor: Colors.orange,
           actions: <Widget>[
             IconButton(
                 icon: Icon(
@@ -114,7 +115,7 @@ class _AddEventState extends State<AddEvent> {
                       style: TextStyle(
                           fontSize: 30.0,
                           fontWeight: FontWeight.bold,
-                          color: Colors.orangeAccent),
+                          color: Colors.black),
                     ),
                     SizedBox(
                       height: size.height * 0.03,
@@ -325,7 +326,17 @@ class _AddEventState extends State<AddEvent> {
                                         eventTime = time.text;
                                         await addEvent();
                                       }
-                                     
+                                      Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ListEvent(
+                                                       // name: eventName,
+                                                        //desc: eventDesc,
+                                                        //venue: eventVenue,
+                                                        //date: eventDate,
+                                                        //time: eventTime,
+                                                      )));
                                     });
                                   },
                                 ),

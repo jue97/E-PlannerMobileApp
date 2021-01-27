@@ -42,7 +42,7 @@ class _EditEventState extends State<EditEvent> {
   TimeOfDay _time = TimeOfDay.now();
   TimeOfDay picked;
   String _timeText = '';
-  var _value = "Seminar A";
+  var _value;
   // ignore: non_constant_identifier_names
   List<DropdownMenuItem> VenueList = [];
 
@@ -78,8 +78,9 @@ class _EditEventState extends State<EditEvent> {
   @override
   void initState() {
     super.initState();
-    getEventData();
+    venue = TextEditingController(text: "${widget.eVenue}");
     fetchEvntName();
+    getEventData();
   }
 
   @override
@@ -149,7 +150,9 @@ class _EditEventState extends State<EditEvent> {
                               eventName = str;
                             });
                           },
-                          decoration: textInputDecoration.copyWith(),
+                          decoration: textInputDecoration.copyWith(
+                          labelText: "${widget.eName}"
+                          ),
                           validator: (value) {
                             if (value.isEmpty) {
                               return 'Please enter some text';
@@ -171,7 +174,9 @@ class _EditEventState extends State<EditEvent> {
                               eventDesc = str;
                             });
                           },
-                          decoration: textInputDecoration.copyWith(),
+                          decoration: textInputDecoration.copyWith(
+                            labelText: "${widget.eName}"
+                          ),
                           validator: (value) {
                             if (value.isEmpty) {
                               return 'Please enter some text';
@@ -183,40 +188,41 @@ class _EditEventState extends State<EditEvent> {
                       //venue
                       Text("Venue"),
                       Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                //Icon(FontAwesomeIcons.marker, size: 30.0, color: Colors.teal,),
-                                SizedBox(width: 0.2),
-                                DropdownButton(
-                                  items: VenueList,
-                                  onChanged: (venue) {
-                                    setState(() {
-                                      _value = venue.toString();
-                                    });
-                                  },
-                                  value: _value,
-                                  isExpanded: false,
-                                  hint: new Text("Choose Location"),
-                                )
-                              ],
-                            ),
-                          ),
-                          SizedBox(height: 2),
-                          RaisedButton(
-                            color: Colors.orange,
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => Map2()),
-                              );
-                            },
-                            child: Text(
-                              "View Map",
-                              style: TextStyle(fontSize: 10.0),
-                            ),
-                          ),
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            //Icon(FontAwesomeIcons.marker, size: 30.0, color: Colors.teal,),
+                            SizedBox(width: 0.2),
+                            DropdownButton(
+                              items: VenueList,
+                              onChanged: (venue) {
+                                setState(() {
+                                  _value = venue.toString();
+                                  eventVenue = _value;
+                                });
+                              },
+                              value: _value,
+                              isExpanded: false,
+                              hint: new Text('${widget.eVenue}'),
+                            )
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 2),
+                      RaisedButton(
+                        color: Colors.orange,
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Map2()),
+                          );
+                        },
+                        child: Text(
+                          "View Map",
+                          style: TextStyle(fontSize: 10.0),
+                        ),
+                      ),
                       /*Container(
                         margin: EdgeInsets.symmetric(vertical: 2),
                         padding:
@@ -375,7 +381,6 @@ class _EditEventState extends State<EditEvent> {
       });
     });
   }
-
 }
 
 /*

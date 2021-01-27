@@ -1,6 +1,6 @@
+import 'package:EPlanner/map/map2.dart';
 import 'package:flutter/material.dart';
 import 'package:EPlanner/Controller/auth_helper.dart';
-import 'package:EPlanner/map/map4.dart';
 import 'package:EPlanner/menu/add_event.dart';
 import 'package:EPlanner/menu/list_event.dart';
 
@@ -65,7 +65,7 @@ class _AdminDrawerState extends State<AdminDrawer> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => MapView()),
+                MaterialPageRoute(builder: (context) => Map2()),
               );
             },
           ),

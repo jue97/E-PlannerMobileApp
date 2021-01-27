@@ -1,8 +1,9 @@
+import 'package:EPlanner/Shared/constant.dart';
+import 'package:EPlanner/map/map4.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:EPlanner/Shared/loading.dart';
 import 'package:EPlanner/View/sidebar/AdminDrawer.dart';
-import 'package:EPlanner/map/map2.dart';
 import 'package:EPlanner/menu/add_event.dart';
 import 'package:EPlanner/menu/list_event.dart';
 import 'package:EPlanner/menu/notification.dart';
@@ -34,6 +35,7 @@ class _AdminHomeState extends State<AdminHome> {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     // final user = Provider.of<User>(context);
     return loading
         ? Loading()
@@ -51,7 +53,11 @@ class _AdminHomeState extends State<AdminHome> {
                           builder: (BuildContext context) => Notify()));
                     })
               ],
-              title: Text("Admin Home"),
+              title: Text(
+                "ADMIN",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 30, color: Colors.black),
+              ),
               backgroundColor: Colors.orange,
               iconTheme: IconThemeData(
                 color: Colors.black,
@@ -59,80 +65,116 @@ class _AdminHomeState extends State<AdminHome> {
               elevation: 0.0,
             ),
             drawer: AdminDrawer(),
-            body: Center(
-              child: Column(
-                children: <Widget>[
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.all(20.0),
-                        child: new MaterialButton(
-                          height: 100,
-                          minWidth: 300,
-                          color: Colors.orangeAccent[100],
-                          textColor: Colors.black,
-                          child: new Text("Manage Event"),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => AddEvent()),
-                            );
-                          },
-                          splashColor: Colors.orangeAccent,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.all(20.0),
-                        child: new MaterialButton(
-                          height: 100,
-                          minWidth: 300,
-                          color: Colors.orangeAccent[100],
-                          textColor: Colors.black,
-                          child: new Text("List Event"),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ListEvent()),
-                            );
-                          },
-                          splashColor: Colors.orangeAccent,
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.all(20.0),
-                        child: new MaterialButton(
-                          height: 100,
-                          minWidth: 300,
-                          color: Colors.orangeAccent[100],
-                          textColor: Colors.black,
-                          child: new Text("Location"),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Map2()),
-                            );
-                          },
-                          splashColor: Colors.orangeAccent,
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ));
+            body: Padding(
+                padding: const EdgeInsets.only(top: 8.0),
+                child: Center(
+                    child: Container(
+                        width: size.width,
+                        child: Column(children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              "WELCOME TO E-PLANNER",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontSize: 30.0,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.orangeAccent),
+                            ),
+                          ),
+                          Container(
+                            child: Column(
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.all(20.0),
+                                      child: new MaterialButton(
+                                        height: 100,
+                                        minWidth: 300,
+                                        color: Colors.orangeAccent[100],
+                                        textColor: Colors.black,
+                                        child: new Text(
+                                          "Manage Event",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.black),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    AddEvent()),
+                                          );
+                                        },
+                                        splashColor: Colors.orangeAccent,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.all(20.0),
+                                      child: new MaterialButton(
+                                        height: 100,
+                                        minWidth: 300,
+                                        color: Colors.orangeAccent[100],
+                                        textColor: Colors.black,
+                                        child: new Text(
+                                          "List Event",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.black),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ListEvent()),
+                                          );
+                                        },
+                                        splashColor: Colors.orangeAccent,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Padding(
+                                      padding: EdgeInsets.all(20.0),
+                                      child: new MaterialButton(
+                                        height: 100,
+                                        minWidth: 300,
+                                        color: Colors.orangeAccent[100],
+                                        textColor: Colors.black,
+                                        child: new Text(
+                                          "Location",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.black),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    MapView()),
+                                          );
+                                        },
+                                        splashColor: Colors.orangeAccent,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
+                            ),
+                          ),
+                        ])))));
   }
 }
