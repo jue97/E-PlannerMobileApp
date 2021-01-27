@@ -1,7 +1,7 @@
+import 'package:EPlanner/menu/add_event.dart';
 import 'package:flutter/material.dart';
 import 'package:EPlanner/Controller/auth_helper.dart';
 import 'package:EPlanner/menu/list_event.dart';
-import 'package:EPlanner/menu/manage_event.dart';
 
 class OrganizerDrawer extends StatefulWidget {
   @override
@@ -34,7 +34,7 @@ class _OrganizerDrawerState extends State<OrganizerDrawer> {
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ManageEvent()),
+                MaterialPageRoute(builder: (context) => AddEvent()),
               );
             },
           ),

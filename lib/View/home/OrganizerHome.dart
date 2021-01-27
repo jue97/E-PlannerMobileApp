@@ -81,8 +81,9 @@ class _OrganizerHomeState extends State<OrganizerHome> {
                                           "Manage Event",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                              fontSize: 30,
-                                              color: Colors.black),
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                              ),
                                         ),
                                         onPressed: () {
                                           Navigator.push(
@@ -111,7 +112,7 @@ class _OrganizerHomeState extends State<OrganizerHome> {
                                           "List Event",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                              fontSize: 30,
+                                              fontSize: 18,
                                               color: Colors.black),
                                         ),
                                         onPressed: () {
@@ -141,7 +142,7 @@ class _OrganizerHomeState extends State<OrganizerHome> {
                                           "Location",
                                           textAlign: TextAlign.center,
                                           style: TextStyle(
-                                              fontSize: 30,
+                                              fontSize: 18,
                                               color: Colors.black),
                                         ),
                                         onPressed: () {

@@ -79,8 +79,10 @@ class _NotifyState extends State<Notify> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notification'),
-        backgroundColor: Colors.orange[300],
+        title: Text('Notification',
+        textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 30, color: Colors.black),),
+        backgroundColor: Colors.orange,
         actions: <Widget>[
           IconButton(
               icon: Icon(

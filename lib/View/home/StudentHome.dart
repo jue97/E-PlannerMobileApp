@@ -24,7 +24,11 @@ class _StudentHomeState extends State<StudentHome> {
               actions: <Widget>[
                 //IconButton(icon: Icon(Icons.search), onPressed: null)
               ],
-              title: Text("Student Home"),
+              title: Text(
+                "STUDENT",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 30, color: Colors.black),
+              ),
               backgroundColor: Colors.orange,
               iconTheme: IconThemeData(
                 color: Colors.black,
@@ -61,7 +65,13 @@ class _StudentHomeState extends State<StudentHome> {
                                   minWidth: 300,
                                   color: Colors.orangeAccent[100],
                                   textColor: Colors.black,
-                                  child: new Text("List Event"),
+                                  child: new Text(
+                                    "List Event",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                    ),
+                                  ),
                                   onPressed: () {
                                     Navigator.push(
                                       context,
