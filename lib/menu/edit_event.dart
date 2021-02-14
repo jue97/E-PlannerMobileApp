@@ -151,8 +151,7 @@ class _EditEventState extends State<EditEvent> {
                             });
                           },
                           decoration: textInputDecoration.copyWith(
-                          labelText: "${widget.eName}"
-                          ),
+                              labelText: "${widget.eName}"),
                           validator: (value) {
                             if (value.isEmpty) {
                               return 'Please enter some text';
@@ -175,8 +174,7 @@ class _EditEventState extends State<EditEvent> {
                             });
                           },
                           decoration: textInputDecoration.copyWith(
-                            labelText: "${widget.eName}"
-                          ),
+                              labelText: "${widget.eDesc}"),
                           validator: (value) {
                             if (value.isEmpty) {
                               return 'Please enter some text';

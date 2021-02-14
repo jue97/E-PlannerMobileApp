@@ -37,16 +37,14 @@ dependencies:
   geocoder: ^0.2.1
   geocoding: ^1.0.5
   flutter_polyline_points: ^0.2.4
-  #geoflutterfire: ^2.2.1
   url_launcher: ^5.7.10 
   google_maps_place_picker: ^1.0.1
   firebase_messaging: ^7.0.3
   flutter_launcher_icons: ^0.8.1
-  #flutter_geofence: ^0.4.0
   flutter_local_notifications: ^3.0.3
   rxdart: ^0.25.0
   overlay_support: ^1.0.5
-  #vector_math: ^2.0.8
+ 
 
 
 

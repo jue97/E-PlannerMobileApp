@@ -25,7 +25,7 @@ class _RegisterState extends State<Register> {
   String password = '';
   String _selectedType;
 
-  List<String> uType = <String>['Admin','Organizer', 'Student'];
+  List<String> uType = <String>['Organizer', 'Student'];
 
   @override
   Widget build(BuildContext context) {
